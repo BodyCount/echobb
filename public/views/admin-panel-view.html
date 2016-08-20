@@ -1,0 +1,42 @@
+
+<div class="container">
+	<div class="header-custom">
+		<ol class="breadcrumb">
+		  <li class="active"><a href="#">Home</a></li>
+		  <li  class="active">Admin Panel</li>
+		</ol>
+	</div>
+	Create section:
+	<input type="text" class="form-control " placeholder="Title" ng-model="section.title"/>
+	<textarea type="text" class="form-control " placeholder="Description" ng-model="section.description"></textarea>
+	<input type="text" class="form-control " placeholder="Color" ng-model="section.color"/>
+	<input type="text" class="form-control " placeholder="Icon" ng-model="section.icon"/>
+	<input class="btn btn-primary pull-right" type="button" value="Create" ng-click="createSection(section)"/>
+
+  <table class="table forum table-striped">
+	    <thead>
+	      <tr>
+	        <th class="cell-stat"></th>
+	        <th></th>
+	        <th class="cell-stat-1-5x text-center"></th>
+	        <th class="cell-stat-1-5x text-center"></th>
+	        <th class="cell-stat-2x text-center"></th>
+	      </tr>
+	    </thead>
+	    <tbody>
+				<tr class="sections">
+	        <td class="text-center"> 
+	        	 <div class="user-icon" style="background-color: {{'#'+section.color}}"><i class="fa {{section.icon}} fa-2" style="font-size: 0.9em; "aria-hidden="true"></div></i>
+	        </td>
+	        <td>
+	          <h4><a href="#/s/{{link+section.title}}">{{section.title | capitalize}}</a><br>
+	          <small> {{section.description}}</a></small>
+	          </h4>
+	        </td>
+					<td class="text-center"> <span ng-show="discussion.new" class="label label-default">New</span> </td>
+	        <td class="text-center hidden-xs "></td>
+	        <td class="text-center hidden-xs "></td>
+	      </tr>
+	    </tbody>
+	  </table>
+</div>

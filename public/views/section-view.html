@@ -1,0 +1,61 @@
+<div class="container" on-scroll-end="getDiscussions">
+	<div class="fade-in" ng-show="!isLoading">
+		<div class="header-custom">
+			<ol class="breadcrumb">
+			  <li class="active"><a href="#">Home</a></li>
+			  <li  class="active">{{route.section | capitalize}}</li>
+			</ol>
+
+		</div>
+	<div ng-show="!error">
+		<div ng-show="!authStatus">
+			<div class="alert alert-info" role="alert">
+		  	<a ui-sref="modal({state:'auth'})" class="alert-link">Log in</a> to create discussion 
+			</div>
+		</div>
+
+		<div class="create-discussion-placeholder" ng-show="authStatus && !showInput" ng-click="showInput = !showInput"><h3 class="text-muted">Start discussion</h3></div>
+
+		<div class="create-discussion fade-in" ng-show="authStatus && showInput">
+			<input type="text" class="form-control discussion-create-form" placeholder="Title" ng-model="discussion.title"/>
+			<textarea type="text" class="form-control discussion-create-form" placeholder="Message" ng-model="discussion.message"></textarea>
+			<input class="btn btn-primary pull-right" type="button" value="Create" ng-click="createDiscussion(discussion)"/>
+		</div>
+
+	  <table class="table forum table-striped">
+	    <thead>
+	      <tr>
+	        <th class="cell-stat"></th>
+	        <th></th>
+	        <th class="cell-stat-1-5x text-center"></th>
+	        <th class="cell-stat-1-5x text-center"></th>
+	        <th class="cell-stat-2x text-center"></th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr class="sections" ng-repeat="discussion in discussions">
+	        <td class="text-center"> 
+	        	 <a ui-sref="modal({state:'profile', profile:discussion.author})"><div class="user-icon" style="background-color: {{'#'+discussion.color}}">{{discussion.author | usericon}}</div></a>
+	        </td>
+	        <td>
+	          <h4><a href="#/s/{{link+'/'+discussion.id}}">{{discussion.title | capitalize}}</a><br>
+	          <small> {{discussion.creationDate | moment:'calendar'}}</a></small>
+	          </h4>
+	        </td>
+					<td class="text-center"> <span ng-show="discussion.new" class="label label-default">New</span> </td>
+	        <td class="text-center hidden-xs ">{{discussion.replies.length - 1}} <span class="badge alert-info" ng-show="discussion.diff">+{{discussion.diff}}</span> </br>
+	        <span class="glyphicon glyphicon-comment text-info"></span></td>
+	        <td class="text-center hidden-xs ">{{discussion.lastMessageDate | moment:'fromNow'}} <br><span class="glyphicon glyphicon-time text-info"></span></td>
+	      </tr>
+	    </tbody>
+		</table>
+	</div>
+
+
+		<div ng-show="!isLoading && error">
+			<div class="alert alert-danger" role="alert" ng-show="error">{{error}}</div>
+		</div>
+	</div>
+</div>
+
+<div ui-view="modal"></div>

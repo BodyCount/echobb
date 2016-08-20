@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="wuutApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://ricostacruz.com/nprogress/nprogress.css">
+    <link rel="stylesheet" href="/static/css/main.css" >
+    <title> Wuut </title>
+    <base href="/">
+</head>
+
+<body>
+    <div ui-view="nav-bar"></div>
+    <div class="nprogress-container"></div>
+    <div class="container">
+        <div ui-view="container"></div>
+        <div ui-view="modal"></div>
+    </div>
+    <div ui-view="footer"></div>
+</body>
+<footer>
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
+            <!--AngularJS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.2.2.js"></script>   
+    <script src="http://ricostacruz.com/nprogress/nprogress.js"></script> 
+
+            <!--Main App-->
+    <script src="/static/app.js"></script>
+
+            <!--Controllers-->
+    <script src="/static/controllers/sectionsController.js"></script>
+    <script src="/static/controllers/sectionController.js"></script>
+    <script src="/static/controllers/discussionController.js"></script>
+    <script src="/static/controllers/adminPanelController.js"></script>
+    <script src="/static/controllers/navbarController.js"></script>
+    <script src="/static/controllers/modalController.js"></script>
+    <script src="/static/controllers/authController.js"></script>
+    <script src="/static/controllers/profileController.js"></script>
+
+            <!--Services-->
+    <script src="/static/services/httpFactory.js"></script>
+    <script src="/static/services/socketFactory.js"></script>
+    <script src="/static/services/authFactory.js"></script>
+    <script src="/static/services/pageFactory.js"></script>
+    <script src="/static/services/modalStateProvider.js"></script>
+    <script src="/static/services/nprogressFactory.js"></script>
+</footer>
+</html>

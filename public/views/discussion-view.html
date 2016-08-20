@@ -1,0 +1,81 @@
+<div class="container">
+	<div class="fade-in" ng-show="!isLoading">
+		<div class="header-custom">
+			<ol class="breadcrumb">
+			  <li class="active"><a href="#">Home</a></li>
+			  <li class="active"><a href="#/s/{{route.section}}">{{route.section | capitalize}}</a></li>
+			  <li class="active">{{discussion.title | capitalize}}</li>
+			</ol>
+		</div>
+
+	<div ng-show="!error">
+		<h4>{{discussion.title | capitalize}}</h4>
+			<table class="table forum table-striped">
+				<thead>
+				  <tr>
+				    <th class="cell-stat"></th>
+				    <th></th>
+				    <th class="cell-stat-1-5x text-center"></th>
+				  </tr>
+				</thead>
+		    <tbody>
+		      <tr class="discussion">
+		        <td class="text-center"> 
+		        	 <a ui-sref="modal({state:'profile', profile:discussion.author})"><div class="user-icon" style="background-color: {{'#'+discussion.color}}">{{discussion.author | usericon}}</div></a>
+		        </td>
+		        <td>
+		        	<a ui-sref="modal({state:'profile', profile:discussion.author})"> <div class='reply-author'>{{discussion.author}}</div></a>
+		        	<div class="reply-time text-muted">{{discussion.creationDate | moment: 'calendar'}}</div>
+		          <div class='reply-body'> {{message.body }}</div>
+		          </h4>
+		        </td>
+						<td class="text-center"> <span ng-show="discussion.new" class="label label-default">New</span> </td>
+		      </tr>
+		    </tbody>
+			</table>
+
+			<div ng-show="!authStatus">
+				<div class="alert alert-info" role="alert">
+			  	<a ui-sref="modal({state:'auth'})" class="alert-link">Log in</a> to creaty reply
+				</div>
+			</div>
+
+			<div class="create-reply-placeholder" ng-show="authStatus && !showInput" ng-click="showInput = !showInput"><h3 class="text-muted">Create reply</h3></div>
+
+			<div class="create-reply fade-in" ng-show="authStatus && showInput">
+				<textarea type="text" class="form-control discussion-create-form" placeholder="Message" ng-model="reply.body"></textarea>
+				<input class="btn btn-primary pull-right" type="button" value="Create" ng-click="createReply(reply)"/>
+			</div>
+
+			<table class="table forum table-striped">
+				<thead>
+				  <tr>
+				    <th class="cell-stat"></th>
+				    <th></th>
+				    <th class="cell-stat-1-5x text-center"></th>
+				  </tr>
+				</thead>
+		    <tbody>
+		      <tr class="discussion" ng-repeat="reply in discussion.replies">
+		        <td class="text-center"> 
+		        	 <a ui-sref="modal({state:'profile', profile:reply.author})"><div class="user-icon" style="background-color: {{'#'+reply.color}}">{{reply.author | usericon}}</div></a>
+		        </td>
+		        <td>
+		        	<a ui-sref="modal({state:'profile', profile:reply.author})"><div class='reply-author'>	{{reply.author}}</div></a>
+		        	<div class="reply-time text-muted">{{reply.creationDate | moment: 'calendar'}}</div>
+		          <div class='reply-body'> {{reply.body}}</div>
+		          </h4>
+		        </td>
+						<td class="text-center"> <span ng-show="reply.new" class="label label-default">New</span> </td>
+		      </tr>
+		    </tbody>
+			</table>		
+		</div>
+
+		<div ng-show="!isLoading">
+			<div class="alert alert-danger" role="alert" ng-show="error">{{error}}</div>
+		</div>
+	</div>
+</div>
+
+<div ui-view="modal"></div>
