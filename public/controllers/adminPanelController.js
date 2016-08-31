@@ -14,4 +14,4 @@ angular
 			socketFactory.emit('sections:create', section);
 		};
 
-  });
+  })
