@@ -9,7 +9,7 @@ const express = require('express')
 
 const app = express()
 	  , server = require('http').Server(app)
-		, io = require('socket.io')(server);
+		, io = require('socket.io')(server);;
 
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
